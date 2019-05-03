@@ -25,7 +25,7 @@ public class ValidaCPF {
 		for (int i = 0; i < quantidadeZeros; i++) {
 			numerosCpf[i] = 0;
 		}
-
+  
 		int j = 0;
 		for (int i = quantidadeZeros; i < 11; i++) {
 			numerosCpf[i] = Integer.parseInt(cpf.substring(j, j + 1));
@@ -47,13 +47,21 @@ public class ValidaCPF {
 
 		int primeiroDigito = (11 - (soma % 11));
 
+		primeiroDigito = primeiroDigito > 9 ? 0 : primeiroDigito;
+//		Se o resultado da subtração for maior que 9, o dígito verificador é ZERO.
+//		Caso contrário, o dígito verificador é o resultado dessa subtração.
+
 		// Cálculo do segundo dígito
 		soma = 0;
 		for (int i = 0; i < numerosCpf.length - 1; i++) {
 			soma += numerosCpf[i] * (11 - i);
 		}
 
-		int segundoDigito = (11 - (soma % 11));
+		int segundoDigito = (11 - ((soma) % 11));
+		segundoDigito = segundoDigito > 9 ? 0 : segundoDigito;
+
+//		Se o resultado da subtração for maior que 9, o dígito verificador é ZERO.
+//		Caso contrário, o dígito verificador é o resultado dessa subtração.
 
 		result = (primeiroDigito == numerosCpf[9]) && (segundoDigito == numerosCpf[10]);
 

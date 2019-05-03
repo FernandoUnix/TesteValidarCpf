@@ -5,36 +5,63 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class ValidaCPFTeste {
-    ValidaCPF app;
+	ValidaCPF app;
 
-    @Before
-    public void setup(){
-        app = new ValidaCPF();
-    }
-    
+	@Before
+	public void setup() {
+		app = new ValidaCPF();
+	}
 
-    @Test
-    public void testaCPFMaiorOnzeDigitos(){
-        Assert.assertFalse(app.isCPF("334624611689"));
-    }
+	// CT1
+	@Test
+	public void testaCPFVazio() {
+		Assert.assertFalse(app.isCPF(""));
+	}
 
-    @Test
-    public void testaCPFNumerosIguais(){
-        Assert.assertFalse(app.isCPF("11111111111"));
-    }
+	// CT2
+	@Test
+	public void testaCPFMaiorOnzeDigitos() {
+		Assert.assertFalse(app.isCPF("334624611689"));
+	}
 
-    @Test
-    public void testaCPFValido(){
-        Assert.assertTrue(app.isCPF("191"));
-    }
+	// CT3
+	@Test
+	public void testaCPFResultadoSubtracaoMenor9() {
+		Assert.assertTrue(app.isCPF("33462461168"));
+	}
 
-    @Test
-    public void testaCPFValido1(){
-        Assert.assertTrue(app.isCPF("01234567890"));
-    }
+	// CT4
+	@Test
+	public void testaCPFValido3Digitos() {
+		Assert.assertTrue(app.isCPF("191"));
+	}
 
-    @Test
-    public void testaCPFValido2(){
-        Assert.assertTrue(app.isCPF("33462461168"));
-    }
+	// CT5
+	@Test
+	public void testaCPFComLetras() {
+		Assert.assertFalse(app.isCPF("abcdefghijl"));
+	}
+
+	// CT6
+	@Test
+	public void testaCPFComLetrasENumeros() {
+		Assert.assertFalse(app.isCPF("123cdefgh90"));
+	}
+
+	// CT7
+	@Test
+	public void testaCPFResultadoSubtracaoMaior9() {
+		Assert.assertTrue(app.isCPF("01234567890"));
+	} 
+ 
+	// CT8
+	@Test
+	public void testaCPFNumerosIguais() {
+
+		String qtde = "???????????";
+		for (int i = 0; i <= 9; i++) {
+			String repetidos = qtde.replace("?", Integer.toString(i));
+			Assert.assertFalse(app.isCPF(repetidos));
+		}
+	}
 }
