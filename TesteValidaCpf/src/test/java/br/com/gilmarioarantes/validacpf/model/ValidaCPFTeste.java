@@ -52,7 +52,7 @@ public class ValidaCPFTeste {
 	@Test
 	public void testaCPFResultadoSubtracaoMaior9() {
 		Assert.assertTrue(app.isCPF("01234567890"));
-	} 
+	}  
  
 	// CT8
 	@Test
