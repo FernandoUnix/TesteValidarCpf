@@ -11,6 +11,7 @@ public class ValidaCPFTeste {
     public void setup(){
         app = new ValidaCPF();
     }
+    
 
     @Test
     public void testaCPFMaiorOnzeDigitos(){
